@@ -28,7 +28,7 @@ import { data, addLecture, deleteLecture, addSkill } from '$lib/store/store';
 				<TableHeadCell class="text-2xs p-2"></TableHeadCell>
 			</TableHead>
 			<TableBody>
-				{#each $data.lectures as lecture, lectureIdx}
+				{#each $data.lectures.filter(e=>e.topic===topic.name) as lecture, lectureIdx}
 				<TableBodyRow>
 					<TableBodyCell class="p-2"><Input type="text" bind:value={lecture.name} class="text-2xs"/></TableBodyCell>
 					<TableBodyCell class="p-2 text-2xs"><PositiveNumberInput bind:value={lecture.points} class="text-2xs text-center"/></TableBodyCell>
@@ -41,6 +41,6 @@ import { data, addLecture, deleteLecture, addSkill } from '$lib/store/store';
 				{/each}
 			</TableBody>
 	</Table>
-	<Button class="text-2xs m-2" on:click={() => addLecture()}>Add Another Lecture</Button>
+	<Button class="text-2xs m-2" on:click={() => addLecture(topic.name)}>Add Another Lecture</Button>
 </div>
 {/each}
